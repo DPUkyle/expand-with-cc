@@ -1,5 +1,7 @@
 ### Template expansion with `ProcessResources` and configuration cache
 
+**tl;dr Watch out for Java 9 collections factory methods like `Map#of`!**
+
 This is a MCVE toy project illustrating a difficulty I'm having using a child CopySpec on `ProcessResources` and Gradle's configuration cache.
 
 Note that configuration cache is enabled by default.
