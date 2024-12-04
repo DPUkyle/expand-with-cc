@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+def myTemplate = resources.text.fromFile('js.template')
+
+tasks.named(JavaPlugin.PROCESS_RESOURCES_TASK_NAME, ProcessResources.class) {
+    def propz = Map.of('REPLACE_WITH_VALUE', 'deadbeef') // runtime type: java.util.ImmutableCollections$Map1
+//    def propz = ['REPLACE_WITH_VALUE': 'deadbeef'] // runtime type: LinkedHashMap
+
+    it.from(myTemplate) { copy ->
+        copy.into 'META-INF/resources/target'
+        copy.expand propz
+        copy.rename { 'myResult.js' }
+    }
+}
